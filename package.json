@@ -1,0 +1,27 @@
+{
+  "name": "findfont",
+  "version": "1.0.0",
+  "scripts": {
+    "prebuild": "node scripts/generate-icons.js",
+    "build": "vite build"
+  },
+  "keywords": [
+    "chrome-extension",
+    "font",
+    "typography",
+    "design",
+    "developer-tools"
+  ],
+  "author": "saippuakiv",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.328",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0",
+    "vite-plugin-static-copy": "^3.1.0"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5"
+  },
+  "description": ""
+}

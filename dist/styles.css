@@ -1,0 +1,347 @@
+:root {
+  /* Design tokens - Unified design system */
+  --ff-primary: #1a1a1a;
+  --ff-secondary: #4a4a4a;
+  --ff-tertiary: #6b7280;
+  --ff-quaternary: #9ca3af;
+  --ff-border: #e5e7eb;
+  --ff-background: rgba(255, 255, 255, 0.95);
+  --ff-accent: #5b21b6;
+  --ff-accent-light: rgba(91, 33, 182, 0.08);
+
+  /* Spacing */
+  --ff-space-xs: 4px;
+  --ff-space-sm: 8px;
+  --ff-space-md: 12px;
+  --ff-space-lg: 16px;
+  --ff-space-xl: 20px;
+  --ff-space-2xl: 24px;
+
+  /* Border radius */
+  --ff-radius-sm: 6px;
+  --ff-radius-md: 8px;
+  --ff-radius-lg: 12px;
+  --ff-radius-xl: 16px;
+  --ff-radius-2xl: 20px;
+
+  /* Animation */
+  --ff-transition: 0.2s ease-in-out;
+  --ff-transition-slow: 0.3s ease-out;
+
+  /* Z-index layers */
+  --ff-z-button: 10000;
+  --ff-z-panel: 10010;
+}
+
+.findfont-floating-button {
+  all: unset;
+  position: fixed;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  border-radius: 16px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700 !important;
+  font-style: italic;
+  cursor: pointer;
+  z-index: var(--ff-z-button);
+  font-family: 'Playfair Display', 'Times New Roman', serif !important;
+  font-size: 18px !important;
+  color: var(--ff-accent) !important;
+  isolation: isolate;
+  transition: all var(--ff-transition);
+  transform: scale(1);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.findfont-floating-button:hover {
+  transform: scale(1.05);
+}
+
+.findfont-info-panel {
+  position: fixed;
+  display: none;
+  z-index: var(--ff-z-panel);
+  width: 280px;
+  max-height: 90vh;
+  height: auto !important;
+  min-height: unset !important;
+  overflow: hidden;
+  border-radius: var(--ff-radius-2xl);
+  cursor: default;
+  isolation: isolate;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px;
+  color: var(--ff-primary);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all var(--ff-transition-slow);
+}
+
+.findfont-info-panel * {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px;
+  color: var(--ff-primary);
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.findfont-info-panel.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.findfont-panel-header {
+  padding: var(--ff-space-lg) var(--ff-space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border-radius: var(--ff-radius-2xl) var(--ff-radius-2xl) 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.findfont-panel-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--ff-space-lg);
+  right: var(--ff-space-lg);
+  height: 1px;
+  background: var(--ff-border);
+}
+
+.findfont-panel-title {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ff-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--ff-space-sm);
+}
+
+.findfont-close-button {
+  all: unset;
+  padding: var(--ff-space-xs);
+  cursor: pointer;
+  color: var(--ff-tertiary);
+  font-size: 18px;
+  line-height: 1;
+  transition: all var(--ff-transition);
+  border-radius: var(--ff-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.findfont-close-button:hover {
+  color: var(--ff-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.findfont-panel-content {
+  padding: var(--ff-space-lg);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0 0 var(--ff-radius-2xl) var(--ff-radius-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.findfont-info-section {
+  border-bottom: 1px solid var(--ff-border);
+  padding-bottom: var(--ff-space-md);
+  margin-bottom: var(--ff-space-md);
+  position: relative;
+}
+
+.findfont-section-title {
+  color: var(--ff-secondary);
+  margin-bottom: var(--ff-space-xs);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.findfont-section-content {
+  color: var(--ff-primary);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.findfont-size-weight-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ff-space-md);
+  align-items: start;
+}
+
+.findfont-color-display {
+  display: flex;
+  align-items: center;
+  gap: var(--ff-space-sm);
+}
+
+.findfont-color-box {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--ff-radius-sm);
+  border: 1px solid var(--ff-border);
+  flex-shrink: 0;
+}
+
+.findfont-fallback-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ff-space-sm);
+  flex-wrap: wrap;
+}
+
+.findfont-fallback-fonts {
+  margin-top: var(--ff-space-lg);
+  background: transparent;
+}
+
+.findfont-fallback-text {
+  font-size: 12px;
+  color: var(--ff-tertiary);
+  line-height: 1.4;
+  flex: 1;
+  min-width: 0;
+}
+
+.findfont-fallback-header {
+  font-size: 11px;
+  color: var(--ff-tertiary);
+  font-weight: 600;
+  margin-bottom: var(--ff-space-xs);
+  letter-spacing: 0.5px;
+}
+
+.findfont-fallback-toggle {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(107, 114, 128, 0.1);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  color: var(--ff-quaternary);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: var(--ff-radius-sm);
+  transition: all var(--ff-transition);
+  font-weight: 400;
+  flex-shrink: 0;
+  height: auto;
+  min-width: 20px;
+  opacity: 0.6;
+}
+
+.findfont-fallback-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+  opacity: 1;
+}
+
+.findfont-font-preview {
+  margin-top: var(--ff-space-lg);
+  padding: var(--ff-space-lg);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--ff-radius-lg);
+  border: 1px solid var(--ff-border);
+}
+
+.findfont-preview-text {
+  padding: var(--ff-space-sm);
+  border-radius: var(--ff-radius-md);
+  margin-bottom: var(--ff-space-sm);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.findfont-preview-text * {
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+}
+
+.findfont-preview-label {
+  font-size: 11px;
+  color: var(--ff-quaternary);
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.findfont-copy-button {
+  all: unset;
+  padding: 2px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--ff-transition);
+  border-radius: var(--ff-radius-sm);
+  height: 20px;
+  width: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.findfont-info-section:hover .findfont-copy-button,
+.findfont-panel-header:hover .findfont-copy-all-button {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.findfont-copy-button:hover,
+.findfont-copy-button.copied {
+  background: var(--ff-accent-light);
+  opacity: 1;
+}
+
+.findfont-copy-button svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.findfont-copy-button.copied svg rect,
+.findfont-copy-button.copied svg {
+  stroke: var(--ff-accent) !important;
+}
+
+.findfont-copy-all-button {
+  margin-left: var(--ff-space-sm);
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: all var(--ff-transition);
+}

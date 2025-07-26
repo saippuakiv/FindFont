@@ -1,0 +1,2 @@
+let o=null;chrome.runtime.onMessage.addListener((e,t,n)=>{e.type==="FONT_DETECTED"&&(o=e.fontInfo,chrome.notifications.create({type:"basic",iconUrl:"icons/icon128.png",title:"Find Font",message:`Font: ${e.fontInfo.fontFamily}
+Click to view details`},i=>{chrome.storage.local.set({[i]:e.fontInfo})}))});chrome.notifications.onClicked.addListener(e=>{chrome.action.openPopup()});chrome.runtime.onMessage.addListener((e,t,n)=>{e.type==="GET_FONT_INFO"&&n(o)});
