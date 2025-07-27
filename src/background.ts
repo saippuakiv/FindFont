@@ -3,6 +3,35 @@ import { ComputedFontInfo, ExtensionMessage } from './content/types';
 // Store the last detected font information
 let lastDetectedFont: ComputedFontInfo | null = null;
 
+// Listen for extension icon click to inject content script
+chrome.action.onClicked.addListener(async (tab) => {
+  if (!tab.id) return;
+
+  try {
+    // Inject CSS first
+    await chrome.scripting.insertCSS({
+      target: { tabId: tab.id },
+      files: ['styles.css'],
+    });
+
+    // Then inject the content script
+    await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ['content/main.js'],
+    });
+
+    // Optionally show a message to user about how to use the extension
+    chrome.notifications.create({
+      type: 'basic',
+      iconUrl: 'static/icon128.png',
+      title: 'FindFont Activated',
+      message: 'Select text on the page to identify fonts',
+    });
+  } catch (error) {
+    console.error('Failed to inject content script:', error);
+  }
+});
+
 // Listen for messages from content script
 chrome.runtime.onMessage.addListener(
   (message: ExtensionMessage, sender, sendResponse) => {
@@ -28,8 +57,15 @@ chrome.runtime.onMessage.addListener(
 
 // Listen for notification clicks
 chrome.notifications.onClicked.addListener((notificationId) => {
+  // Clear the stored font info
+  chrome.storage.local.remove(notificationId);
+
   // Open the popup
   chrome.action.openPopup();
+});
+
+chrome.notifications.onClosed.addListener((notificationId) => {
+  chrome.storage.local.remove(notificationId);
 });
 
 // Listen for messages from popup

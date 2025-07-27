@@ -10,15 +10,9 @@
       "16": "static/icon16.png",
       "48": "static/icon48.png",
       "128": "static/icon128.png"
-    }
+    },
+    "default_title": "Click to activate FindFont on this page"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content/main.js"],
-      "css": ["styles.css"]
-    }
-  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
