@@ -15,7 +15,7 @@ A Chrome extension that helps designers and developers quickly identify fonts us
 
 ### From Chrome Web Store
 
-1. Visit [FindFont on Chrome Web Store](link-coming-soon)
+1. Visit [link-coming-soon]
 2. Click "Add to Chrome"
 3. Start identifying fonts!
 
